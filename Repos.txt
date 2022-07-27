@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.Arrays;
+
+public class Repos {
+    String[] wordE = {"AND", "PUT", "SET", "TEA"};
+    String[] jumbleE = {"NDA", "TPU", "TSE", "ETA"};
+    String[] wordD = {"SAND", "GATE", "TEAM", "MEET"};
+    String[] jumbleD = {"NDSA", "ETGA", "MTAE", "EEMT"};
+
+    String returnWordE(String jE) {
+        int i = Arrays.binarySearch(jumbleE, jE);
+        return wordE[i];
+    }
+
+    String returnWordD(String jD) {
+        int i = Arrays.binarySearch(jumbleD, jD);
+        return wordD[i];
+    }
+
+    public static void main(String[] args) throws IOException,ArrayIndexOutOfBoundsException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Repos rs = new Repos();
+        System.out.println("INTERFACE :");
+        System.out.println("---------------------");
+        System.out.println("WELCOME TO JUMBLE WORD");
+        System.out.println("---------------------");
+        System.out.println("PRESS 1 for EASY");
+        System.out.println("PRESS 2 for DIFFICULT");
+        System.out.println("PRESS 3 for EXIT");
+        int times=0,correct=0;
+        int ch = Integer.parseInt(br.readLine());
+        if(ch == 1) {
+            System.out.println("HOW MANY TIMES YOU WANT TO PLAY THE GAME?");
+            times = Integer.parseInt(br.readLine());
+            for (int i = 0; i < times ; i++) {
+                System.out.println("---------------------");
+                System.out.println("GAME MODE : EASY");
+                System.out.println("---------------------");
+                System.out.println("GUESS THE WORD :");
+                String jE = br.readLine();
+                System.out.println("ANSWER :");
+                System.out.println(rs.returnWordE(jE));
+                System.out.println("-----------------------");
+                correct++;
+            }
+            System.out.println("TOTAL : "+ times);
+            System.out.println("CORRECT : "+ correct);
+            System.out.println("SCORE : "+ ((correct/times)*100));
+        }
+        if(ch == 2) {
+            System.out.println("HOW MANY TIMES YOU WANT TO PLAY THE GAME?");
+            times = Integer.parseInt(br.readLine());
+            for (int i = 0; i < times; i++) {
+                System.out.println("---------------------");
+                System.out.println("GAME MODE : DIFFICULT");
+                System.out.println("---------------------");
+                System.out.println("GUESS THE WORD :");
+                String jD = br.readLine();
+                System.out.println("ANSWER :");
+                System.out.println(rs.returnWordD(jD));
+                System.out.println("-----------------------");
+                correct++;
+            }
+            System.out.println("TOTAL : "+ times);
+            System.out.println("CORRECT : "+ correct);
+            System.out.println("SCORE : "+ ((correct/times)*100));
+        }
+        if(ch==3) System.exit(0);
+    }
+}
